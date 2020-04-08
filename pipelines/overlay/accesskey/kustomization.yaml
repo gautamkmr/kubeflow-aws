@@ -5,6 +5,7 @@ bases:
   - ../../base
 
 resources:
+  - aws-access-secrets.yaml
   - viewer-tensorboard-template-configmap.yaml
 
 # Replace with your namespace
@@ -16,7 +17,8 @@ patchesStrategicMerge:
 configMapGenerator:
 - name: pipeline-aws-parameters
   behavior: merge
-  env: params.env
+  envs:
+    - params.env
 
 generatorOptions:
   disableNameSuffixHash: true
